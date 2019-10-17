@@ -10644,3 +10644,41 @@ a.text-dark:focus {
   }
 }
 
+.counter {
+  margin-right: 30px;
+  font-size: 15px;
+  text-align: center;
+  padding: 10px;
+}
+
+.counter strong {
+  display: block;
+  font-size: 1.4em;
+}
+
+.counter .vote,
+.counter .answer {
+  width: 60px;
+  height: 60px;
+}
+
+.counter .status.unanswered {
+  border: none;
+}
+
+.counter .status.answered {
+  border: 1px solid #38c172;
+  color: #38c172;
+  padding: 8px;
+}
+
+.counter .status.answered-accepted {
+  background-color: #38c172;
+  color: white;
+  padding: 8px;
+}
+
+.counter .view {
+  margin-top: 10px;
+}
+
