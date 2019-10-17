@@ -37,6 +37,7 @@ class Question extends Model
             {
                 return "asnwered-accepted";
             }
+            
             return "answered";
         }
 
