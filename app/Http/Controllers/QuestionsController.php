@@ -9,6 +9,11 @@ use App\Http\Requests\AskQuestionRequest;
 
 class QuestionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth',['except' === ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -67,10 +72,12 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        if(\Gate::denies('update-question',$question))
-        {
-            abort(403, "Access denied!");
-        }
+        // if(\Gate::denies('update-question',$question))
+        // {
+        //     abort(403, "Access denied!");
+        // }
+        
+        $this->authorize("update", $question);
         return view("questions.edit", compact('question'));
         
     }
@@ -84,10 +91,12 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
-        if(\Gate::denies('update-question',$question))
-        {
-            abort(403, "Access denied!");
-        }
+        // if(\Gate::denies('update-question',$question))
+        // {
+        //     abort(403, "Access denied!");
+        // }
+
+        $this->authorize("update", $question);
         
         $question->update($request->only('title','body'));
 
@@ -102,10 +111,9 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        if(\Gate::denies('delete-question',$question))
-        {
-            abort(403, "Access denied!");
-        }
+        
+
+        $this->authorize("delete", $question);
 
         $question->delete();
 
