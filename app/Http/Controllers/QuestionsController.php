@@ -96,11 +96,14 @@ class QuestionsController extends Controller
         //     abort(403, "Access denied!");
         // }
 
-        $this->authorize("update", $question);
         
-        $question->update($request->only('title','body'));
+        
+        $this->authorize("update", $question);
 
-        return redirect()->route('questions.index')->with('success',"Your question has been updated");
+        $question->update($request->only('title','body'));
+      
+        
+        return redirect()->route('questions.index')->with('success','Your question has been updated.');
     }
 
     /**
